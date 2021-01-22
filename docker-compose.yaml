@@ -3,12 +3,17 @@ version: '3.3'
 services:
 
   db:
-    image: linuxserver/mariadb
+    image: ghcr.io/linuxserver/mariadb
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    expose:
+      - 3306
     volumes:
       - ./db:/var/lib/mysql
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid           
       - MYSQL_ROOT_PASSWORD=p4ssw0rd
       - MYSQL_PASSWORD=p4ssw0rd
       - MYSQL_DATABASE=nextcloud
@@ -20,10 +25,11 @@ services:
     ports:
       - "8080:80"
       - "8443:443"
-    links:
+    depends_on:
       - db
     volumes:
-      - ./nextcloud:/var/www/html
+      - ./nextcloud/config:/config 
+      - ./nextcloud/data:/data 
     environment:
       - MYSQL_PASSWORD=p4ssw0rd
       - MYSQL_DATABASE=nextcloud
