@@ -10,4 +10,5 @@ En el navegador ir a:
 "IP:8080" para acceder desde otro PC en la misma red wifi
 
 Usuario: Nextcloud
+
 Password: el que quieras
