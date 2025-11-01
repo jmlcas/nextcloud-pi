@@ -1,6 +1,6 @@
 # Nextcloud
 
-ir a:"http://localhost:8080" ó usar 
+Ver en: "http://localhost:8080" 
 
 Usuario: Nextcloud
 
